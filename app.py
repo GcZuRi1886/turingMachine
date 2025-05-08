@@ -97,13 +97,13 @@ def read_input_for_tm() -> str:
         data = input("Enter the input for the Turingmachine: ")
     return data
 
-def execute_turing_machine(functions: list[TuringFunction], band: str, step_mode: bool) -> str:
+def execute_turing_machine(functions: list[TuringFunction], tape: str, step_mode: bool) -> str:
     """
     Executes the Turing machine with the given functions and input string.
     
     Args:
         functions (list[TuringFunction]): The list of Turing functions.
-        input_str (str): The input string for the Turing machine.
+        tape (str): The input string for the Turing machine.
         step_mode (bool): Whether to run in step mode or not.
     
     Returns:
@@ -117,7 +117,7 @@ def execute_turing_machine(functions: list[TuringFunction], band: str, step_mode
         current_function = None
         counter += 1
         for function in state_functions:
-            if function.get_function_by_symbol(band[pointer_index]):
+            if function.get_function_by_symbol(tape[pointer_index]):
                 current_function = function
                 break
 
@@ -125,19 +125,19 @@ def execute_turing_machine(functions: list[TuringFunction], band: str, step_mode
             break
 
         if step_mode:
-            print_step_mode(band, pointer_index, current_state, counter)
+            print_step_mode(tape, pointer_index, current_state, counter)
 
-        band = band[:pointer_index] + current_function.write_symbol + band[pointer_index + 1:]
+        tape = tape[:pointer_index] + current_function.write_symbol + tape[pointer_index + 1:]
         pointer_index += current_function.move_direction.value
         current_state = current_function.next_state
 
         if pointer_index < 0:
             pointer_index = 0
-            band = EMPTY + band
-        elif pointer_index >= len(band):
-            band += EMPTY
+            tape = EMPTY + tape
+        elif pointer_index >= len(tape):
+            tape += EMPTY
 
-    result = band.replace(EMPTY, "")
+    result = tape.replace(EMPTY, "")
     return result
 
 def print_step_mode(band: str, pointer_index: int, current_state: int, counter: int):
