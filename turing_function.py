@@ -1,6 +1,6 @@
 from enum import Enum
 
-EMPTY = "e"
+EMPTY = "_"
 
 def detect_symbol(symbol):
     if symbol == "0":

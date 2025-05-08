@@ -134,7 +134,6 @@ def execute_turing_machine(functions: list[TuringFunction], band: str, step_mode
             band = EMPTY + band
         elif pointer_index >= len(band):
             band += EMPTY
-        # print(f"Current state: {current_state}, Pointer index: {pointer_index}, Input string: {band}")
 
     result = band.replace(EMPTY, "")
     return result
