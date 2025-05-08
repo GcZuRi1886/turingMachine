@@ -120,8 +120,10 @@ def execute_turing_machine(functions: list[TuringFunction], band: str, step_mode
             if function.get_function_by_symbol(band[pointer_index]):
                 current_function = function
                 break
+
         if current_function is None:
             break
+
         if step_mode:
             print_step_mode(band, pointer_index, current_state, counter)
 
