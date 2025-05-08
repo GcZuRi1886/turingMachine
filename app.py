@@ -72,7 +72,6 @@ def parse_functions_from_binary(data: str) -> list[TuringFunction]:
     for function_str in data.split("11"):
         if function_str:
             actions = function_str.split("1")
-            print(f"Actions: {actions}")
             if len(actions) != 5:
                 raise ValueError("Invalid function format")
             function = TuringFunction(
@@ -83,7 +82,6 @@ def parse_functions_from_binary(data: str) -> list[TuringFunction]:
                 move_direction=actions[4]
             )
             functions.append(function)
-    print(f"Functions: {len(functions)}")
     return functions
 
 def read_input_for_tm() -> str:
@@ -149,8 +147,9 @@ def print_step_mode(band: str, pointer_index: int, current_state: int, counter: 
         band (str): The current state of the Turing machine.
         pointer_index (int): The current index of the pointer.
         current_state (int): The current state of the Turing machine.
+        counter (int): The current step number.
     """
-    print(f"Current state: {current_state}, Pointer index: {pointer_index}, Input string: {band}, Step number: {counter}")
+    print(f"Current state: {current_state}, Pointer index: {pointer_index}, Band: {band[:pointer_index]}*{band[pointer_index:]}, Step number: {counter}")
 
 def main():
     print("Select on how you want to enter the data:")
@@ -175,7 +174,6 @@ def main():
     else:
         raise ValueError("Invalid choice")
 
-    # functions, input_str = parse_binary_data(data)
     functions = parse_functions_from_binary(data)
     input_str = read_input_for_tm()
     
