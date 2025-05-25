@@ -140,7 +140,7 @@ def execute_turing_machine(functions: list[TuringFunction], tape: str, step_mode
     result = tape.replace(EMPTY, "")
     return result
 
-def print_step_mode(band: str, pointer_index: int, current_state: int, counter: int):
+def print_step_mode(tape: str, pointer_index: int, current_state: int, counter: int):
     """
     Prints the current state of the Turing machine in step mode.
     
@@ -150,7 +150,7 @@ def print_step_mode(band: str, pointer_index: int, current_state: int, counter: 
         current_state (int): The current state of the Turing machine.
         counter (int): The current step number.
     """
-    print(f"Current state: {current_state}, Pointer index: {pointer_index}, Band: {band[:pointer_index]}*{band[pointer_index:]}, Step number: {counter}")
+    print(f"Current state: {current_state}, Pointer index: {pointer_index}, Band: {tape[:pointer_index]}*{tape[pointer_index:]}, Step number: {counter}")
 
 def main():
     print("Select on how you want to enter the data:")
